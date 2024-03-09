@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+
+<style>
+    .main{
+        margin-top: 50px;
+        border: 2px solid;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 5px 5px 5px black;
+    }
+
+    input{
+        padding: 2px;
+    }
+    
+</style>
+
+<div class="outer" style="display: flex; align-items: center; justify-content: center;">
+<div class="main">
+    <h2 style="text-align: center;">Register </h2>
+
+<form action="" method="post" style="margin-top:50px;">
+{% csrf_token %}
+{{fm.as_p}}
+<button type="submit">Submit</button>
+</form>
+
+</div>
+</div>
+
+
+{% endblock body %}

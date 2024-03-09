@@ -1,0 +1,53 @@
+
+
+{% extends "base.html" %}
+
+
+{% block body %}
+
+<style>
+   td,tr,table,th{
+    text-align: center;
+  }
+  h2{
+    text-align: center  ;
+  }
+</style>
+
+<div>
+
+<h2>List Of Book Issuers </h2>
+
+<table class="table table-bordered" style="margin-top: 50px;">
+  <thead>
+    <tr>
+      <th scope="col">Sr No</th>
+      <th scope="col">Member Name</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Book Price</th>
+      <th scope="col">Issue Date </th>
+      <th scope="col" colspan="2" style="text-align: center;">Action </th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for i in data %}
+    <tr>    
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{i.member.name}}</td>
+      <td>{{i.book.title}}</td>
+      <td>{{i.fee_charged}}</td>
+      <td>{{i.date_issued}}</td>
+      <td><a href="{% url 'Book_return' i.id i.book.title %}"><button type="button" class="btn btn-outline-primary">Book Return</button></a></td>
+      <td><a href="{% url 'update_issuer' i.id  %}"><button type="button" class="btn btn-outline-primary">Update</button></a></td>
+
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+</div>
+
+{% endblock body %}

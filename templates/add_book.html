@@ -1,0 +1,62 @@
+{% extends "base.html" %} 
+
+
+{% block body %}
+
+
+<style>
+  input{
+    padding: 5px;
+    border-radius: 20px;
+    border: 2px solid;
+    text-align: center;
+  }
+  .btn{
+    border-radius: 50px;
+  }
+
+  td,tr,table,th{
+    text-align: center;
+  }
+</style>
+
+<div style="display: flex;align-items:center;justify-content: center;">
+<form action="{% url 'page_sort' %}" method="post">
+  {% csrf_token %}
+  <input type="number" name="page_no" id="" placeholder="Enter Page No" style=" margin-top: 30px;">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+</div>
+
+
+<table class="table" style="margin-top: 30px;">
+  <thead>
+    <tr>
+      <th scope="col">Book ID</th>
+      <th scope="col">Movie Name </th>
+      <th scope="col">Add To Library</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+      <th scope="row">{{i.bookID}}</th>
+      <td>{{i.title}}</td>
+      <td><a href="{% url 'add_to_library' i.title %}"><button class="btn btn-primary"><i class="bi bi-plus-square"></i></button> </a></td>
+      
+    </tr>
+    
+    {% endfor %}
+
+    
+   
+  </tbody>
+
+</table>
+
+
+
+
+{% endblock body %}
+
